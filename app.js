@@ -75,7 +75,7 @@ function addTask(){
     const input_value = input.value
 
     //make sure tasks less than 10 and input is not empty
-    if(input_value != "" && tasks < 10){
+    if(input_value != "" && tasks < 8){
 
         tasks_list.push(input_value)
 
