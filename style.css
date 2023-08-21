@@ -1,0 +1,49 @@
+*{
+    margin:0;
+    pad: 0;
+}
+
+.task{
+    display: flex;
+    align-items: center;
+    
+    gap:10px;
+    padding: 10px;
+    padding-left: 20%;
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+.container{
+    border-radius: 10px;
+    background-color: rgb(44, 142, 199);
+    width: 500px;
+    margin: auto;
+    margin-top: 50px;
+    height: 500px;
+    
+}
+
+header{
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+button{
+    border: none;
+
+}
+button:hover{
+    opacity: 0.95;
+}
+.checkmark{
+    background-color: rgb(238, 94, 94);
+}
+
+
+.todo{
+    width:230px;
+    text-align: center;
+}
