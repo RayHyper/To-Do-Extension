@@ -2,18 +2,52 @@ const container = document.getElementById("container")
 const add_btn = document.querySelector(".add_btn")
 const input = document.querySelector(".task_box")
 
+let storedTasks = JSON.parse(localStorage.getItem("tasks"));
 
 let tasks_list = []
 
 //set number of tasks to 0
 let tasks = 0;
 
+
+
+if (storedTasks) {
+    for (const task of storedTasks) {
+        console.log(task); // Do something with each task object
+
+        tasks_list.push(task)
+
+        const taskDiv = document.createElement("div")
+    
+        //add the task div to it
+        taskDiv.innerHTML = "<div class='task'><div class='todo'><p>"+task+"</p></div><div class='btn_group'><button id='checkmark' class='checkmark'>✓</button><button class='remove'>✕</button></div></div>"
+        tasks += 1;
+
+        //append task div to container
+        container.appendChild(taskDiv)
+
+         //make search bar empty
+         input.value = ""
+    }
+}
+
+
+
 //when one of the buttons are clicked on a task
 container.addEventListener("click", (event)=>{
     //if remove button pressed
     if(event.target.classList.contains("remove")){
+        const taskIndex = tasks_list.indexOf(event.target.closest(".task").querySelector(".todo p").textContent);
+        if (taskIndex !== -1) {
+            tasks_list.splice(taskIndex, 1);
+           
+           
+        }
+
+
         //remove task
         event.target.closest(".task").remove();
+        updateStorage();
         tasks--;
     }
     //if checkmark button pressed
@@ -35,6 +69,8 @@ container.addEventListener("click", (event)=>{
 
 //when add button pressed add task
 add_btn.addEventListener("click",()=>{
+    console.log(tasks_list)
+
     addTask()
 })
 
@@ -47,13 +83,18 @@ document.addEventListener("keyup", function(event) {
 
 
 function addTask(){
+
     //get input from user
     const input_value = input.value
 
-    tasks_list.push(input_value)
+
+    
 
     //make sure tasks less than 10 and input is not empty
     if(input_value != "" && tasks < 10){
+
+        tasks_list.push(input_value)
+
         //make a new div
         const taskDiv = document.createElement("div")
     
@@ -67,8 +108,15 @@ function addTask(){
         //make search bar empty
         input.value = ""
 
-        console.log(tasks_list)
+       
 
     }
+    updateStorage();
+
+}
+
+function updateStorage(){
+    let string = JSON.stringify(tasks_list)
+    localStorage.setItem("tasks", string)
 
 }
