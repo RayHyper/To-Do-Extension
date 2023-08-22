@@ -6,6 +6,8 @@ let storedTasks = JSON.parse(localStorage.getItem("tasks"));
 
 let tasks_list = []
 
+let storedColour =  [];
+
 //set number of tasks to 0
 let tasks = 0;
 
@@ -28,6 +30,7 @@ container.addEventListener("click", (event)=>{
         const taskIndex = tasks_list.indexOf(event.target.closest(".task").querySelector(".todo p").textContent);
         if (taskIndex !== -1) {
             tasks_list.splice(taskIndex, 1);
+            storedColour.splice(taskIndex,1)
            
            
         }
@@ -35,6 +38,7 @@ container.addEventListener("click", (event)=>{
 
         //remove task
         event.target.closest(".task").remove();
+
         updateStorage();
         tasks--;
     }
@@ -45,11 +49,31 @@ container.addEventListener("click", (event)=>{
         if(event.target.style.backgroundColor === "lightgreen"){
             //if already green turn it red
             event.target.style.backgroundColor = "rgb(238, 94, 94)";
+
+            const taskIndex = tasks_list.indexOf(event.target.closest(".task").querySelector(".todo p").textContent);
+            if (taskIndex !== -1) {
+                storedColour[taskIndex] = "red"
+                
+                
+            }
+
+            
+           
         }
         else{
         //if button is red turn it green
             event.target.style.backgroundColor = "lightgreen";
+
+            const taskIndex = tasks_list.indexOf(event.target.closest(".task").querySelector(".todo p").textContent);
+            if (taskIndex !== -1) {
+                storedColour[taskIndex] = "green"
+               
+                
+            }
+           
         }
+        updateStorage()
+       
       
         
     }
@@ -71,6 +95,8 @@ document.addEventListener("keyup", function(event) {
 
 function addTask(){
 
+    storedColour.push("red")
+
     //get input from user
     const input_value = input.value
 
@@ -91,6 +117,9 @@ function updateStorage(){
     let string = JSON.stringify(tasks_list)
     localStorage.setItem("tasks", string)
 
+
+    localStorage.setItem("colours", JSON.stringify(storedColour));
+
 }
 
 
@@ -109,5 +138,4 @@ function makeTask(task){
     input.value = ""
 
 }
-
 
