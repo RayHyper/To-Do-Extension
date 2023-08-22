@@ -125,11 +125,29 @@ function updateStorage(){
 
 
 function makeTask(task){
+    console.log(storedColour)
+
     const taskDiv = document.createElement("div")
 
     //add the task div to it
     taskDiv.innerHTML = "<div class='task'><div class='todo'><p>"+task+"</p></div><div class='btn_group'><button id='checkmark' class='checkmark'>✓</button><button class='remove'>✕</button></div></div>"
     tasks += 1;
+
+
+    
+    let storeColour = JSON.parse(localStorage.getItem("colours"));
+    if(storeColour && storeColour[tasks-1] === "green"){
+
+        taskDiv.querySelector(".checkmark").style.backgroundColor = "lightgreen";
+
+        storedColour.push("green")
+
+    }
+    else if(storeColour && storeColour[tasks-1] === "red"){
+        taskDiv.querySelector(".checkmark").style.backgroundColor = "rgb(238, 94, 94)";
+        storedColour.push("red")
+    }
+
 
     //append task div to container
     container.appendChild(taskDiv)
