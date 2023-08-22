@@ -6,6 +6,7 @@ let storedTasks = JSON.parse(localStorage.getItem("tasks"));
 
 let tasks_list = []
 
+//store state of check button
 let storedColour =  [];
 
 //set number of tasks to 0
@@ -27,9 +28,15 @@ if (storedTasks) {
 container.addEventListener("click", (event)=>{
     //if remove button pressed
     if(event.target.classList.contains("remove")){
+
+        //get index of task clicked
         const taskIndex = tasks_list.indexOf(event.target.closest(".task").querySelector(".todo p").textContent);
         if (taskIndex !== -1) {
+
+            //remove task in list
             tasks_list.splice(taskIndex, 1);
+
+            //remove the checked colour
             storedColour.splice(taskIndex,1)
            
            
@@ -50,32 +57,28 @@ container.addEventListener("click", (event)=>{
             //if already green turn it red
             event.target.style.backgroundColor = "rgb(238, 94, 94)";
 
+            //get task index
             const taskIndex = tasks_list.indexOf(event.target.closest(".task").querySelector(".todo p").textContent);
             if (taskIndex !== -1) {
+                //change checked colour to opposite
                 storedColour[taskIndex] = "red"
-                
-                
             }
 
-            
-           
         }
         else{
         //if button is red turn it green
             event.target.style.backgroundColor = "lightgreen";
 
+            //get task index
             const taskIndex = tasks_list.indexOf(event.target.closest(".task").querySelector(".todo p").textContent);
             if (taskIndex !== -1) {
+                //change checked colour to opposite
                 storedColour[taskIndex] = "green"
-               
-                
-            }
-           
+                    
+            }    
         }
         updateStorage()
        
-      
-        
     }
 })
 
@@ -117,7 +120,7 @@ function updateStorage(){
     let string = JSON.stringify(tasks_list)
     localStorage.setItem("tasks", string)
 
-
+  //set storedColoured list to local storage
     localStorage.setItem("colours", JSON.stringify(storedColour));
 
 }
@@ -134,17 +137,25 @@ function makeTask(task){
     tasks += 1;
 
 
-    
+    //get colour order from local storage
     let storeColour = JSON.parse(localStorage.getItem("colours"));
+
+    //if local storage is not empty and task is green
     if(storeColour && storeColour[tasks-1] === "green"){
 
+        //make task green
         taskDiv.querySelector(".checkmark").style.backgroundColor = "lightgreen";
 
+        //push to colour array
         storedColour.push("green")
 
     }
+    //if local storage is not empty and task is red
     else if(storeColour && storeColour[tasks-1] === "red"){
+         //make task red
         taskDiv.querySelector(".checkmark").style.backgroundColor = "rgb(238, 94, 94)";
+
+        //push to colour array
         storedColour.push("red")
     }
 
