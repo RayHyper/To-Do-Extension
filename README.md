@@ -7,4 +7,5 @@ Can delete, checkmark and add tasks
 
 A fun way to keep track of your daily tasks!
 
-![image](https://github.com/RayHyper/To-Do-Extension/assets/74573089/f2e6836f-e298-436d-a2ad-97c22ea1da36)
+Got logo from https://www.stockio.com/free-icon/mountains-3
+and background image from https://free4kwallpapers.com/blue-wallpapers?page=2
