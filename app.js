@@ -1,6 +1,7 @@
 const container = document.getElementById("container")
 const add_btn = document.querySelector(".add_btn")
 const input = document.querySelector(".task_box")
+const containerImage = document.querySelector(".container");
 
 let storedTasks = JSON.parse(localStorage.getItem("tasks"));
 
