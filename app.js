@@ -133,6 +133,7 @@ function makeTask(task){
 
     const taskDiv = document.createElement("div")
 
+
     //add the task div to it
     taskDiv.innerHTML = "<div class='task'><div class='todo'><p>"+task+"</p></div><div class='btn_group'><button id='checkmark' class='checkmark'>✓</button><button class='remove'>✕</button></div></div>"
     tasks += 1;
@@ -160,9 +161,10 @@ function makeTask(task){
         storedColour.push("red")
     }
 
-
     //append task div to container
     container.appendChild(taskDiv)
+
+
 
     //make search bar empty
     input.value = ""
