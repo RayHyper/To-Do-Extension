@@ -9,3 +9,5 @@ A fun way to keep track of your daily tasks!
 
 Got logo from https://www.stockio.com/free-icon/mountains-3
 and background image from https://free4kwallpapers.com/blue-wallpapers?page=2
+
+Extension link https://chrome.google.com/webstore/detail/task-quester/fmjgcjhceiofhjeglkfhnoghfifiogda
