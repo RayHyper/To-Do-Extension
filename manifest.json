@@ -1,7 +1,8 @@
 {
     "manifest_version": 3,
     "version": "1.0",
-    "name": "To Do List",
+    "name": "Task Quester",
+    "description": "A simple to do list extension",
     "action": {
         "default_popup": "index.html",
         "default_icon": "./images/mountains@3x.png"
